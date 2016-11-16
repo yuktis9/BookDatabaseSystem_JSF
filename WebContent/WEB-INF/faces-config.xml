@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+
+	
+	 <!-- <managed-bean> <managed-bean-name>titleBean</managed-bean-name> <managed-bean-class> 
+		assignment2.jsf.bean.TitleBean </managed-bean-class> <managed-bean-scope>session</managed-bean-scope> 
+		</managed-bean> -->
+
+	<!-- <navigation-rule>
+	<from-view-id>viewPage/start.xhtml</from-view-id>
+	<navigation-case>
+		<from-action>#{pageController.processPage1}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>viewPage/page1.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-action>#{pageController.processPage2}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>viewPage/page2.xhtml</to-view-id>
+	</navigation-case>
+    </navigation-rule> -->	
+    
+    <navigation-rule>
+	<from-view-id>*</from-view-id>
+	
+	<navigation-case>
+		<from-outcome>seesionOut</from-outcome>
+		<to-view-id>viewPage/loginPage.xhtml</to-view-id>
+	</navigation-case>
+	
+	<navigation-case>
+		<from-action>#{titleBean.maintainTitle}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>viewPage/maintainTitle.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-action>#{authorBean.maintainAuthor}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>viewPage/maintainAuthor.xhtml</to-view-id>
+	</navigation-case> 
+	<navigation-case>
+		<from-action>#{authorISBN.addAuthorISBN}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>viewPage/AddAuthorISBN.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-action>#{dataScrollerView.demo}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>viewPage/basic.xhtml</to-view-id>
+	</navigation-case>
+	
+	<navigation-case>
+		<from-action>#{authorISBNBean.searchAuthorISBN}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>viewPage/searchAuthorISBN.xhtml</to-view-id>
+	</navigation-case>
+	  
+	  <navigation-case>
+		<from-action>#{authorBean.addAuthorPage}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>viewPage/addAuthor.xhtml</to-view-id>
+	</navigation-case>
+	
+	<navigation-case>
+		<from-action>#{titleBean.addTitle}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>viewPage/addTitle.xhtml</to-view-id>
+	</navigation-case>
+	
+	<navigation-case>
+		<from-action>#{authorISBNBean.maintainAuthorISBN}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>viewPage/homePage.xhtml</to-view-id>
+	</navigation-case>
+	
+	<navigation-case>
+		<from-action>#{authorISBNBean.getChart}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>viewPage/bookDataChart.xhtml</to-view-id>
+	</navigation-case>
+	
+    </navigation-rule>
+
+	<navigation-rule>
+		<display-name>AddUser2</display-name>
+		<from-view-id>/AddUser2.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/ListUser2.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- <navigation-rule>
+
+		<from-view-id>viewPage/homePage.xhtml</from-view-id>
+		
+		
+		<navigation-case>
+			<from-action>#{TitleBean.processPage1}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>viewPage/maintainTitle.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule> -->
+		
+</faces-config>

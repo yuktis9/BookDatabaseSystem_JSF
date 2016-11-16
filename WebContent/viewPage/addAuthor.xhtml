@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
+<h:body>
+	<ui:insert name="header" >
+            <ui:include src="/template/header.xhtml" />
+         </ui:insert> 
+   <br></br>
+	<h:form>
+    <p:panel id="panel" header="Add Author">
+ 
+        <p:messages id="msgs" />
+ 
+        <h:panelGrid columns="4" cellpadding="5">
+            <p:outputLabel for="firstname" value="First Name:" />
+            <p:inputText id="firstname" value="#{authorBean.firstName}" required="true" label="Firstname">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:watermark for="firstname" value="Ex. Deniel" />
+            <p:message for="firstname" display="icon" />
+ 
+            <p:outputLabel for="lastname" value="Last Name:" />
+            <p:inputText id="lastname" value="#{authorBean.lastName}" label="Lastname" required="true">
+                <f:validateLength minimum="2" />
+                <p:ajax update="msgLastname" event="keyup" />
+            </p:inputText>
+            <p:watermark for="lastname" value="Ex. Vetori" />
+            <p:message for="lastname" id="msgLastname" display="icon" />
+ 
+        </h:panelGrid>
+ 
+        <p:commandButton value="Save" update="panel" actionListener="#{authorBean.addAuthor()}" icon="ui-icon-check" />
+    </p:panel>
+	</h:form>
+
+
+</h:body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>bookData</display-name>
+  <welcome-file-list>
+    <welcome-file>viewPage/loginPage.xhtml</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
+  <context-param>
+    <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>client</param-value>
+  </context-param>
+  <context-param>
+    <param-name>resteasy.scan</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>resteasy.servlet.mapping.prefix</param-name>
+    <param-value>/rest</param-value>
+  </context-param>
+  <listener>
+    <listener-class>
+			org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>resteasy-servlet</servlet-name>
+    <servlet-class>
+			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>resteasy-servlet</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/viewPage/error.xhtml</location>
+  </error-page>
+  <error-page>
+    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    <location>/viewPage/loginPage.xhtml</location>
+  </error-page>
+  <context-param>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>blitzer</param-value>
+  </context-param>
+</web-app>

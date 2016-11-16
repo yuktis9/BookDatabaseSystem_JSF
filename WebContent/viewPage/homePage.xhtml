@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    	<link rel="stylesheet" href="css/styles.css"></link>
+   		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+   		<script src="js/script.js"></script>
+    </h:head>
+    <h:body>
+ 
+    	<ui:insert name="header" >
+            <ui:include src="/template/header.xhtml" />
+         </ui:insert> 
+		<br></br>
+<h:form id="form">
+   <p:growl id="msgs" showDetail="true"/>
+ 
+   <p:dataTable id="cars1" var="authISBN" value="#{authorISBNBean.authorISBNs}" paginator="true" rows="8" editable="true" 
+   	paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+   	 rowsPerPageTemplate="5,10,15" style="margin-bottom:20px" rowIndexVar="index"> 
+       <f:facet name="header">
+           Author and Title List
+       </f:facet>
+ 
+       <p:ajax event="rowEdit" listener="#{authorISBNBean.onRowEdit}" update=":form:msgs" />
+       <p:ajax event="rowEditCancel" listener="#{authorISBNBean.onRowCancel}" update=":form:msgs" />
+ 
+        <!-- <p:column headerText="Id">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{auth.authorId}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput" value="#{auth.authorId}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>  -->
+ 		
+ 		<p:column style="width:50px" headerText="Index Count">
+        	#{index + 1}
+    	</p:column>
+    
+ 		 <p:column headerText="Id" style="display:none">
+        	<h:outputText value="#{auth.authorId}" />
+        	<!-- <h:inputHidden value="#{auth.authorId}"></h:inputHidden>
+        	<h:inputText value="#{auth.authorId}"></h:inputText> -->
+    	</p:column> 
+    
+       <p:column headerText="First Name" sortBy="#{authISBN.author.firstName}" filterBy="#{authISBN.author.firstName}">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{authISBN.author.firstName}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{authISBN.author.firstName}" style="width:100%" label="Year"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+       
+       
+       <p:column headerText="Last Name" sortBy="#{authISBN.author.lastName}" filterBy="#{authISBN.author.lastName}">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{authISBN.author.lastName}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{authISBN.author.lastName}" style="width:100%" label="Year"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+
+	   <p:column headerText="ISBN" sortBy="#{authISBN.title.ISBN}" filterBy="#{authISBN.title.ISBN}">
+        	<h:outputText value="#{authISBN.title.ISBN}" />
+        	<!-- <h:inputHidden value="#{title.ISBN}"></h:inputHidden>
+        	<h:inputText value="#{title.ISBN}"></h:inputText> -->
+    	</p:column>
+    	
+    	
+       <p:column headerText="Title" sortBy="#{authISBN.title.title}" filterBy="#{authISBN.title.title}">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{authISBN.title.title}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{authISBN.title.title}" style="width:100%" label="Title"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+       
+       <p:column headerText="Copyright" sortBy="#{authISBN.title.copyRight}" filterBy="#{authISBN.title.copyRight}">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{authISBN.title.copyRight}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{authISBN.title.copyRight}" style="width:100%" label="Copyright"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+
+		<p:column headerText="Edition No" sortBy="#{authISBN.title.editionNo}" filterBy="#{authISBN.title.editionNo}">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{authISBN.title.editionNo}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{authISBN.title.editionNo}" style="width:100%" label="Edition No"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+
+       <p:column style="width:82px" headerText="Action">
+           <p:rowEditor />
+           <p:commandLink ajax="true" action="#{authorISBNBean.removeAuthorISBN(authISBN)}" update="@form" process="@this" onclick="if (!confirm('Deleting this record will only delete this relation,Are you sure?')) { return false; }" >
+            <span title="Remove" class="ui-icon ui-icon-trash"/>
+        </p:commandLink>
+       </p:column>
+   </p:dataTable>
+
+</h:form>
+
+</h:body>	
+</html>

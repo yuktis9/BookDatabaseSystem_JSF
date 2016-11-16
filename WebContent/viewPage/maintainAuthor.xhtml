@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
+<h:body>
+	<ui:insert name="header" >
+            <ui:include src="/template/header.xhtml" />
+         </ui:insert> 
+   <br></br>
+<h:form id="form">
+   <p:growl id="msgs" showDetail="true"/>
+ 
+   <p:dataTable id="cars1" var="auth" value="#{authorBean.authors}" paginator="true" rows="5" editable="true" 
+   	paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+   	 rowsPerPageTemplate="5,10,15" style="margin-bottom:20px" rowIndexVar="index"> 
+       <f:facet name="header">
+           Author List
+       </f:facet>
+ 
+       <p:ajax event="rowEdit" listener="#{authorBean.onRowEdit}" update=":form:msgs" />
+       <p:ajax event="rowEditCancel" listener="#{authorBean.onRowCancel}" update=":form:msgs" />
+ 
+        <!-- <p:column headerText="Id">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{auth.authorId}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput" value="#{auth.authorId}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>  -->
+ 		
+ 		<p:column headerText="Index Count">
+        	#{index + 1}
+    	</p:column>
+    
+ 		 <p:column headerText="Id" style="display:none">
+        	<h:outputText value="#{auth.authorId}" />
+        	<!-- <h:inputHidden value="#{auth.authorId}"></h:inputHidden>
+        	<h:inputText value="#{auth.authorId}"></h:inputText> -->
+    	</p:column> 
+    
+       <p:column headerText="First Name" sortBy="#{auth.firstName}" filterBy="#{auth.firstName}">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{auth.firstName}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{auth.firstName}" style="width:100%" label="Year"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+       
+       <p:column headerText="Last Name" sortBy="#{auth.lastName}" filterBy="#{auth.lastName}">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{auth.lastName}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{auth.lastName}" style="width:100%" label="Year"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+
+		 <!-- <p:column headerText="Delete">
+        <p:commandLink ajax="true" action="#{authorBean.removeAuthor(auth)}" update="@form" process="@this" onclick="if (!confirm('Areyou sure?')) { return false; }" >
+            <span title="Remove" class="ui-icon ui-icon-trash"/>
+        </p:commandLink>
+     </p:column>  -->
+    
+
+       <p:column style="width:82px" headerText="Action">
+           <p:rowEditor />
+           <p:commandLink ajax="true" action="#{authorBean.removeAuthor(auth)}" update="@form" process="@this" onclick="if (!confirm('Deleting this record will also delete the related entry?')) { return false; }" >
+            <span title="Remove" class="ui-icon ui-icon-trash"/>
+        </p:commandLink>
+       </p:column>
+   </p:dataTable>
+
+</h:form>
+
+
+</h:body>
+
+</html>

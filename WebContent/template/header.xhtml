@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+    <f:metadata>
+    	<f:event type="preRenderView" listener="#{homeBean.checkSession}" />
+	</f:metadata>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    	<link rel="stylesheet" href="#{request.contextPath}/css/styles.css"></link>
+   		<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+   		<script src="#{request.contextPath}/js/script.js"></script>
+    </h:head>
+    <h:body>
+
+	<h:form>
+	<div id='cssmenu'>
+	
+		<ul>
+			<li class='has-sub'><h3><a href='#'><span>Maintain Data</span></a></h3>
+				<ul>
+					<li><h3><h:commandLink action="#{authorBean.maintainAuthor}" value="Maintain Author" /></h3></li>
+					<li><h3><h:commandLink action="#{titleBean.maintainTitle}" value="Maintain Title" /></h3></li>
+					<li><h3><h:commandLink action="#{authorISBNBean.maintainAuthorISBN}" value="Maintain Author ISBN" /></h3></li>
+				</ul>
+			</li>
+			<li class='has-sub'><h3><a href='#'><span>Add Data</span></a></h3>
+				<ul>
+					<li><h3><h:commandLink action="#{authorBean.addAuthorPage}" value="Add Author" /></h3></li>
+					<li class='last'><h3><h:commandLink action="#{titleBean.addTitle}" value="Add Title" /></h3></li>
+					<li><h3><h:commandLink action="#{authorISBN.addAuthorISBN}" value="Link Author and Title" /></h3></li>
+				</ul></li>
+			<li class='last'><h3><h:commandLink action="#{authorISBNBean.searchAuthorISBN}" value="Search Data" /></h3></li>
+			<li class='last'><h3><h:commandLink action="#{authorISBNBean.getChart}" value="Statistics" /></h3></li>
+			<li class='active'><h3><h:commandLink value="logout" action="#{homeBean.makeMeLogut}" /></h3></li>
+		</ul>
+	</div>
+	<br/><br/><br/>
+</h:form>
+
+</h:body>	
+</html>

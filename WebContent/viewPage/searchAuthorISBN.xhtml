@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+	<script type="text/javascript" src="http://arrow.scrolltotop.com/arrow59.js"></script>
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<script type="text/javascript">
+
+	$ = jQuery;
+	$(document).ready(function(){
+
+		$("#myForm\\:selectType_input").change(function() {
+
+			  var typeSelected = $("#myForm\\:selectType_input").val();
+			  		
+			  if(typeSelected == "numericType"){
+
+				  $("#myForm\\:likeExpres").hide();
+				  $("#myForm\\:likeExpresLabel").hide();
+				  
+				  /* $("#myForm\\:numericValue").show();
+				  $("#myForm\\:numericValueLabel").show();
+				  $("#myForm\\:numericValueLabel_input").show(); */
+				  $("#myForm\\:selectRestriction_input").show();
+				  $("#myForm\\:selectRestriction_input").parent().show();
+				  $("#myForm\\:selectRestrictionLabel").show();
+				  $("#myForm\\:selectRestriction_label").show();
+				  $("#myForm\\:selectRestriction").show();
+				  $("#myForm\\:selectRestriction").show();
+
+				  $("#myForm\\:likeExpres").val("");
+				  
+				  
+			  }else if(typeSelected == "stringType"){
+				  
+				  $("#myForm\\:likeExpres").show();
+				  $("#myForm\\:likeExpresLabel").show();
+				  
+				  $("#myForm\\:numericValue").hide();
+				  $("#myForm\\:numericValueLabel").hide();
+				  $("#myForm\\:numericValueLabel_input").hide(); 
+				  $("#myForm\\:selectRestriction_input").hide();
+				  $("#myForm\\:selectRestriction_input").parent().hide();
+				  $("#myForm\\:selectRestrictionLabel").hide();
+				  $("#myForm\\:selectRestriction_label").hide();
+				  $("#myForm\\:selectRestriction").hide();
+				  $("#myForm\\:betweenRangeLabel").hide();
+				  $("#myForm\\:betweenRange").hide();
+
+				  $("#myForm\\:selectRestriction_input").val("0");
+				  $("#myForm\\:numericValue_input").val("");
+
+			  }else{
+				  
+				  $("#myForm\\:likeExpres").hide();
+				  $("#myForm\\:likeExpresLabel").hide();
+				  
+				  $("#myForm\\:numericValue").hide();
+				  $("#myForm\\:numericValueLabel").hide();
+				  $("#myForm\\:numericValueLabel_input").hide();
+				  $("#myForm\\:selectRestriction_input").hide();
+				  $("#myForm\\:selectRestriction_input").parent().hide();
+				  $("#myForm\\:selectRestrictionLabel").hide();
+				  $("#myForm\\:selectRestriction_label").hide();
+				  $("#myForm\\:selectRestriction").hide();
+				  $("#myForm\\:betweenRange").hide();
+		    	  $("#myForm\\:betweenRangeLabel").hide();
+		    	  
+				  $("#myForm\\:selectRestriction_input").val("0");
+				  $("#myForm\\:selectRestriction_input").change();
+				  $("#myForm\\:numericValue_input").val("");
+				  $("#myForm\\:likeExpres").val("");		  
+			  }
+			  
+			  
+		});
+
+		$("#myForm\\:selectRestriction_input").change(function() {
+
+			  var typeSelected = $("#myForm\\:selectRestriction_input").val();
+			  $("#myForm\\:numericValue_input").val("");
+			  if(typeSelected == "BETWEEN"){
+				  
+				  $("#myForm\\:betweenRangeLabel").show();
+				  $("#myForm\\:betweenRange").show();
+
+				  $("#myForm\\:numericValue").hide();
+				  $("#myForm\\:numericValueLabel").hide();
+				  $("#myForm\\:numericValueLabel_input").hide();
+
+				  
+		      }else if(typeSelected == "0"){
+
+		    	  $("#myForm\\:betweenRangeLabel").hide();
+				  $("#myForm\\:betweenRange").hide();
+
+				  $("#myForm\\:numericValue").hide();
+				  $("#myForm\\:numericValueLabel").hide();
+				  $("#myForm\\:numericValueLabel_input").hide();
+				  
+		      }else{
+		    	  $("#myForm\\:betweenRange").hide();
+		    	  $("#myForm\\:betweenRangeLabel").hide();
+
+		    	  $("#myForm\\:numericValue").show();
+				  $("#myForm\\:numericValueLabel").show();
+				  $("#myForm\\:numericValueLabel_input").show();	
+			  }
+		});
+	});
+	</script>
+</h:head>
+
+<ui:insert name="header">
+	<ui:include src="/template/header.xhtml" />
+</ui:insert>
+<br></br>
+
+<h:body>
+
+	<h:form id="myForm">
+		
+		<h:panelGrid columns="8">
+		
+			<p:outputLabel for="selectTable" value="Select Table: " />
+			<p:outputLabel for="selectColumn" value="Select Column: " id="selectColumnLabel"/>
+			<p:outputLabel for="selectType" value="Select Type: " id="selectTypeLabel"/>
+			<p:outputLabel for="selectRestriction" value="Select Restriction: " id="selectRestrictionLabel" style="display:none"/>
+			<p:outputLabel for="likeExpres" value="Like Value: " id="likeExpresLabel" style="display:none" />
+			<p:outputLabel for="numericValue" value="Numerci Value: " id="numericValueLabel" style="display:none"/>
+			<h:outputText id="betweenRangeLabel" value="Between #{authorISBNBean.betweenMinValue} and #{authorISBNBean.betweenMaxValue}" style="display:none"/>
+			<h:outputText value=""/>
+			
+            <p:selectOneMenu id="selectTable" value="#{authorISBNBean.tableName}" style="width:150px" required="true">
+                <p:ajax listener="#{authorISBNBean.onTableChange}" update="selectColumn"/>
+                <f:selectItem itemLabel="Select Table" itemValue="" noSelectionOption="true" />
+                <f:selectItem itemLabel="Author" itemValue="authors"/>
+                <f:selectItem itemLabel="Title" itemValue="titles" />
+            </p:selectOneMenu>
+		
+            <p:selectOneMenu id="selectColumn" value="#{authorISBNBean.columnName}" style="width:150px" required="true">
+                <f:selectItem itemLabel="Select Column" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{authorISBNBean.columnNames}" />
+            </p:selectOneMenu>
+            
+            <p:selectOneMenu id="selectType" value="#{authorISBNBean.columnType}" style="width:150px" required="true">
+                <f:selectItem itemLabel="Select Type" itemValue="" noSelectionOption="true" />
+                 <f:selectItem itemLabel="Numeric Type" itemValue="numericType" />
+                 <f:selectItem itemLabel="String Type" itemValue="stringType" />
+            </p:selectOneMenu>
+            
+            <p:selectOneMenu id="selectRestriction" value="#{authorISBNBean.restrcitionType}" style="width:150px;display:none">
+                 <f:selectItem itemLabel="Select restriction" itemValue="0" noSelectionOption="true" />
+                 <f:selectItem itemLabel="&gt;" itemValue="&gt;" />
+                 <f:selectItem itemLabel="&lt;" itemValue="&lt;" />
+                 <f:selectItem itemLabel="&gt;=" itemValue="&gt;=" />
+                 <f:selectItem itemLabel="&lt;=" itemValue="&lt;=" />
+                 <f:selectItem itemLabel="=" itemValue="=" />
+                 <f:selectItem itemLabel="&gt;&lt;" itemValue="BETWEEN" />
+            </p:selectOneMenu>
+            
+            <p:inputText id="likeExpres" style="display:none" value="#{authorISBNBean.likeValue}"/>
+            
+            <p:spinner id="numericValue" min="0" max="10000" style="display:none" value="#{authorISBNBean.numericValue}"/>
+
+			<p:slider id="betweenRange" for="txt6,txt7" display="betweenRangeLabel" style="width: 400px;display:none" range="true" minValue="0" maxValue="2100" displayTemplate="Between {min} and {max}" />
+			
+			<h:inputHidden id="txt6" value="#{authorISBNBean.betweenMinValue}" />
+			<h:inputHidden id="txt7" value="#{authorISBNBean.betweenMaxValue}" />
+			
+			
+			<h:commandButton icon="ui-icon-check" value="Submit" action="#{authorISBNBean.updateSearchData}"/>
+				
+			
+
+		</h:panelGrid>
+		
+		<p:dataScroller id="kaka" value="#{authorISBNBean.authorISBNs}"
+			var="authorISBN" chunkSize="4">
+			<f:facet name="header">
+            Scroll Down to Load More Data
+        </f:facet>
+
+			<h:panelGrid columns="2" style="width:100%"
+				columnClasses="logo,detail">
+
+
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputText value="Author First Name:" />
+						<h:outputText value="#{authorISBN.author.firstName}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Author Last Name:" />
+						<h:outputText value="#{authorISBN.author.lastName}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Book ISBN:" />
+						<h:outputText value="#{authorISBN.title.ISBN}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Book Title:" />
+						<h:outputText value="#{authorISBN.title.title}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Book Edition No:" />
+						<h:outputText value="#{authorISBN.title.editionNo}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Book Copyright:" />
+						<h:outputText value="#{authorISBN.title.copyRight}"
+							style="font-weight: bold" />
+
+					</h:panelGrid>
+					<p:separator></p:separator>
+				</p:outputPanel>
+
+			</h:panelGrid>
+		</p:dataScroller>
+	</h:form>
+
+</h:body>
+</html>

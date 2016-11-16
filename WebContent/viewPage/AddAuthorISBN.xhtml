@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    	<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+    	<script src="/bookData/js/addAuthorISBN.js"></script>
+    </h:head>
+    <h:body>
+    
+    <ui:insert name="header" >
+            <ui:include src="/template/header.xhtml" />
+         </ui:insert> 
+   <br></br>
+
+    	<h:form id="myForm">
+    	
+    	<p:panel id="panel" header="Link Author with Title">
+    	<p:messages id="msgs"/>
+    <h:panelGrid columns="7" cellpadding="5">
+
+		<p:outputLabel value="Search Author :" />
+			
+        <p:selectOneMenu id="searchAuthorType" value="#{authorISBN.searchAuthorType}" style="width:145px" required="true">
+        	<f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItem itemLabel="By First Name" itemValue="FirstName" />
+            <f:selectItem itemLabel="By Last Name" itemValue="LastName" />
+        </p:selectOneMenu>
+
+		
+        <p:autoComplete style="display:none" id="authorPojo1" value="#{authorISBN.authorForFirstName}" completeMethod="#{authorISBN.searchAuthor}" 
+                        var="auth" itemLabel="#{auth.firstName}" itemValue="#{auth}" forceSelection="true" converter="authorConverter" >
+                        
+        	<f:attribute name="searchBy" value="FirstName" />
+                        
+        </p:autoComplete>
+        <p:watermark for="authorPojo1" value="Start typing First Name" />
+        <p:autoComplete style="display:none" id="authorPojo2" value="#{authorISBN.authorForLastName}" completeMethod="#{authorISBN.searchAuthor}" 
+                        var="auth" itemLabel="#{auth.lastName}" itemValue="#{auth}" forceSelection="true" converter="authorConverter" >
+                        
+        <f:attribute name="searchBy" value="LastName" />
+                        
+        </p:autoComplete>
+        <p:watermark for="authorPojo2" value="Start typing Last Name" />
+		<b><font  style="color: red;display: none">Numeric value only</font></b>
+    
+        <p:outputLabel value="Search Title :"/>
+
+        <p:selectOneMenu id="searchTitleType" value="#{authorISBN.searchTitleType}" style="width:145px" required="true">
+        	<f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItem itemLabel="By Title" itemValue="Title" />
+            <f:selectItem itemLabel="By ISBN" itemValue="ISBN" />
+        </p:selectOneMenu>
+
+        <p:autoComplete style="display:none" id="titlePojo1" value="#{authorISBN.titleForTitle}" completeMethod="#{authorISBN.searchTitle}"
+                        var="tit" itemLabel="#{tit.title}" itemValue="#{tit}" forceSelection="true" converter="titleConverter" >
+         	<f:attribute name="searchBy" value="title" />               
+                        
+         </p:autoComplete>
+		<p:watermark for="titlePojo1" value="Start typing title name" />
+		<p:autoComplete style="display:none" id="titlePojo2" value="#{authorISBN.titleForISBN}" completeMethod="#{authorISBN.searchTitle}"
+                        var="tit" itemLabel="#{tit.ISBN}" itemValue="#{tit}" forceSelection="true" converter="titleConverter" >
+         	<f:attribute name="searchBy" value="ISBN" />               
+                        
+         </p:autoComplete>
+         <p:watermark for="titlePojo2" value="Start typing ISBN no" />
+         <b><font id="errorMSG" style="color: red;display: none">Numeric value only</font></b>
+         
+    </h:panelGrid>
+ 
+    <p:commandButton value="Submit" action="#{authorISBN.submitForm}" onclick="submitForm()" icon="ui-icon-check"/>
+ 	</p:panel>
+</h:form>
+		
+    </h:body>	
+</html>

@@ -1,0 +1,137 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="#{request.contextPath}/js/addTitle.js"></script>
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/addTitle.css"></link>
+	
+</h:head>
+
+<body>
+
+
+	<ui:insert name="header" >
+            <ui:include src="/template/header.xhtml" />
+         </ui:insert> 
+	<BR></BR><BR></BR>
+	<DIV align="left">
+	
+	<form action="#{request.contextPath}/addTitle" method="post">
+	
+    <fieldset  style="width: 700px;border-color: #cc0000">
+        <legend><h1 style="color: #cc0000 ;">Add Title</h1></legend>
+        
+        <br></br>
+        
+        <TABLE>
+        
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD></TD>
+        		<TD><h2 id="success" style="color: blue"></h2></TD><TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD style="width: 20px;"></TD><TD></TD>
+        		<TD>ISBN *</TD>
+        		<TD><input class="titleInputs" required="required" type="text" id="ISBN" name="ISBN" placeholder="Ex. 0147852412" autofocus="autofocus"/></TD>
+        		<TD><FONT style="display: none" id="ISBNError" color="red"><B>This ISBN already exist!</B></FONT></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD></TD>
+        		<TD></TD><TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD></TD>
+        		<TD></TD><TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD>Title *</TD>
+        		<TD><input class="titleInputs" type="text" name="title" placeholder="Ex. How to Programm in Java" required="required"/></TD>
+        		<TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD></TD>
+        		<TD></TD><TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD></TD>
+        		<TD></TD><TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD>Edition No *</TD>
+        		<TD><input class="titleInputs" type="text" id="editionNo" name="editionNo" placeholder="Ex. 3" required="required"/></TD>
+        		<TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD></TD>
+        		<TD></TD><TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD></TD>
+        		<TD></TD><TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD>Copy Right *</TD>
+        		<TD><input class="titleInputs" type="text" id="copyRight" name="copyRight" placeholder="Ex. 2004" required="required"/></TD>
+        		<TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD></TD>
+        		<TD></TD><TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD></TD>
+        		<TD></TD><TD></TD>
+        	</TR>
+        	
+        	<TR>
+        		<TD></TD><TD></TD>
+        		<TD></TD>
+        		<TD><input id="submitButton" type="submit" value="Submit"/></TD>
+        		<TD></TD>
+        	</TR>
+        
+        </TABLE>
+    </fieldset>
+</form>   
+</DIV>
+
+</body>
+
+<script type="text/javascript">
+
+document.getElementById("success").innerHTML = '${Success}';
+
+
+
+	</script>
+</html>

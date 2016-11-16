@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#AddUser2.xhtml" PATH="/AddUser2.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#AddUser2.xhtml:0" NAME="item"
+   PATH="/AddUser2.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="success::#ListUser2.xhtml" NAME="output"
+    PATH="/ListUser2.xhtml" TARGET="rules:#ListUser2.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ListUser2.xhtml" PATH="/ListUser2.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:viewPage#maintainTitle.xhtml"
+  PATH="viewPage/maintainTitle.xhtml" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:viewPage#maintainAuthor.xhtml"
+  PATH="viewPage/maintainAuthor.xhtml" SHAPE="256,401,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:viewPage#AddAuthorISBN.xhtml"
+  PATH="viewPage/AddAuthorISBN.xhtml" SHAPE="272,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:viewPage#basic.xhtml"
+  PATH="viewPage/basic.xhtml" SHAPE="288,577,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:viewPage#searchAuthorISBN.xhtml"
+  PATH="viewPage/searchAuthorISBN.xhtml" SHAPE="304,609,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:viewPage#addAuthor.xhtml"
+  PATH="viewPage/addAuthor.xhtml" SHAPE="304,641,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="seesionOut::viewPage#loginPage.xhtml"
+    NAME="output" PATH="viewPage/loginPage.xhtml"
+    TARGET="rules:viewPage#loginPage.xhtml" TITLE="seesionOut" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{titleBean.maintainTitle}:viewPage#maintainTitle.xhtml"
+    NAME="output1" PATH="viewPage/maintainTitle.xhtml"
+    TARGET="rules:viewPage#maintainTitle.xhtml"
+    TITLE="#{titleBean.maintainTitle}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{authorISBN.addAuthorISBN}:viewPage#AddAuthorISBN.xhtml"
+    NAME="output2" PATH="viewPage/AddAuthorISBN.xhtml"
+    TARGET="rules:viewPage#AddAuthorISBN.xhtml"
+    TITLE="#{authorISBN.addAuthorISBN}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{dataScrollerView.demo}:viewPage#basic.xhtml"
+    NAME="output3" PATH="viewPage/basic.xhtml"
+    TARGET="rules:viewPage#basic.xhtml"
+    TITLE="#{dataScrollerView.demo}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{authorISBNBean.searchAuthorISBN}:viewPage#searchAuthorISBN.xhtml"
+    NAME="output4" PATH="viewPage/searchAuthorISBN.xhtml"
+    TARGET="rules:viewPage#searchAuthorISBN.xhtml"
+    TITLE="#{authorISBNBean.searchAuthorISBN}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{authorBean.addAuthorPage}:viewPage#addAuthor.xhtml"
+    NAME="output5" PATH="viewPage/addAuthor.xhtml"
+    TARGET="rules:viewPage#addAuthor.xhtml"
+    TITLE="#{authorBean.addAuthorPage}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{titleBean.addTitle}:viewPage#addTitle.xhtml"
+    NAME="output6" PATH="viewPage/addTitle.xhtml"
+    TARGET="rules:viewPage#addTitle.xhtml"
+    TITLE="#{titleBean.addTitle}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{authorISBNBean.maintainAuthorISBN}:viewPage#homePage.xhtml"
+    NAME="output7" PATH="viewPage/homePage.xhtml"
+    TARGET="rules:viewPage#homePage.xhtml"
+    TITLE="#{authorISBNBean.maintainAuthorISBN}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{authorISBNBean.getChart}:viewPage#bookDataChart.xhtml"
+    NAME="output8" PATH="viewPage/bookDataChart.xhtml"
+    TARGET="rules:viewPage#bookDataChart.xhtml"
+    TITLE="#{authorISBNBean.getChart}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:viewPage#addTitle.xhtml"
+  PATH="viewPage/addTitle.xhtml" SHAPE="304,673,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:viewPage#homePage.xhtml"
+  PATH="viewPage/homePage.xhtml" SHAPE="304,705,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:viewPage#bookDataChart.xhtml"
+  PATH="viewPage/bookDataChart.xhtml" SHAPE="304,737,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:viewPage#loginPage.xhtml"
+  PATH="viewPage/loginPage.xhtml" SHAPE="304,737,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>
